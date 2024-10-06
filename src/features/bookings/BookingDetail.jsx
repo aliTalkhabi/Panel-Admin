@@ -17,6 +17,7 @@ import { HiArrowUpOnSquare } from "react-icons/hi2";
 import { useCheckout } from "../check-in-out/useCheckOut";
 import Modal from "../../ui/Modal";
 import { useDeleteBooking } from "./useDeleteBooking";
+import Empty from "../../ui/Empty";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -34,7 +35,8 @@ function BookingDetail() {
   const navigate = useNavigate();
   if (isLoading)
     return <Spinner />
-
+  if (!booking)
+    return <Empty resourceName='bookings' />
   const { status, id: bookingId } = booking
 
   const statusToTagName = {
